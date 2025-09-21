@@ -1,5 +1,6 @@
 package io.github.eduardolemos.libraryapi.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -39,7 +40,7 @@ public class Livro {
 	private GeneroLivro genero;
 	
 	@Column(name = "preco",precision = 18, scale = 2)
-	private Double preco;
+	private BigDecimal preco;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_autor", nullable = false)

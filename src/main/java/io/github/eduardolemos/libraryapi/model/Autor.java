@@ -32,7 +32,7 @@ public class Autor {
 	@Column(name = "nascionalidade", length = 50, nullable = false)
 	private String nacionalidade;
 	
-	@OneToMany(mappedBy = "autor")
+	@OneToMany(mappedBy = "id_autor")
 	private List<Livro> livros;
 
 	
