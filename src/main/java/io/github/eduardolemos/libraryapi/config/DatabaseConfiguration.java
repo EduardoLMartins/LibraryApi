@@ -1,0 +1,64 @@
+package io.github.eduardolemos.libraryapi.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+public class DatabaseConfiguration {
+
+	@Value("${spring.datasource.url}")
+	String url;
+	
+	@Value("${spring.datasource.username}")
+	String username;
+	
+	@Value("${spring.datasource.password}")
+	String password;
+	
+	@Value("${spring.datasource.driver-class-name}")
+	String driver;
+	
+	
+//	 @Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource ds = new DriverManagerDataSource();
+		ds.setUrl(url);
+		ds.setUsername(username);
+		ds.setPassword(password);
+		ds.setDriverClassName(driver);
+		
+		return ds;
+	}
+	
+//	@Bean
+	public DataSource hikariDataSource() {
+		
+		HikariConfig hikariConfig = new HikariConfig();
+		hikariConfig.setUsername(username);
+		hikariConfig.setJdbcUrl(url);
+		hikariConfig.setPassword(password);
+		hikariConfig.setDriverClassName(driver);
+		
+		
+		hikariConfig.setMaximumPoolSize(10); // Maixmo de conexoes liberadas
+		hikariConfig.setMinimumIdle(1); // tamanho inicial do pool
+		hikariConfig.setPoolName("library-db-pool");
+		hikariConfig.setMaxLifetime(600000); // 600 mil ms		
+		hikariConfig.setConnectionTimeout(100000);
+		hikariConfig.setConnectionTestQuery("select 1");
+		
+		return new HikariDataSource(hikariConfig);
+		
+		
+		
+	}
+	
+	
+}
