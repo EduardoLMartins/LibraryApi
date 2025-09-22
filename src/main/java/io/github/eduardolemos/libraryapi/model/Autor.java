@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Entity
@@ -32,7 +33,8 @@ public class Autor {
 	@Column(name = "nascionalidade", length = 50, nullable = false)
 	private String nacionalidade;
 	
-	@OneToMany(mappedBy = "id_autor")
+//	@OneToMany(mappedBy = "id_autor")
+	@Transient
 	private List<Livro> livros;
 
 	
