@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.github.eduardolemos.libraryapi.model.Autor;
 import io.github.eduardolemos.libraryapi.model.GeneroLivro;
@@ -61,8 +62,50 @@ class LivroRepositoryTest {
 		
 		livroRepository.save(livro);
 		
+	}
+	
+	@Test
+	void atualizarAutorDoLivro() {
+		UUID id = (UUID.fromString("045ffe33-79b6-4912-846c-314f657c4e1c"));
+		var livroParaAtualizar = livroRepository.findById(id).orElse(null);
 		
+		UUID idAutor = UUID.fromString("ccba2eaf-fb7b-46bc-a0d2-8a93f8b505fa");
+		var autor = autorRepository.findById(idAutor).orElse(null);
 		
+		livroParaAtualizar.setAutor(autor);
+		livroRepository.save(livroParaAtualizar);
+	}
+	
+	@Test
+	void deletarPorIdSemcascade() {
+		
+		UUID id = (UUID.fromString("045ffe33-79b6-4912-846c-314f657c4e1c"));
+	
+		livroRepository.deleteById(id);
+		
+	}
+	
+	@Test
+	void deletar() {
+		
+		UUID id = (UUID.fromString("045ffe33-79b6-4912-846c-314f657c4e1c"));
+		var livroParaAtualizar = livroRepository.findById(id).orElse(null);
+	
+		livroRepository.deleteById(id);
+		
+	}
+	
+	@Test
+	//@Transactional garante que todas as operações do método
+	//(ou classe) rodem em uma transação única, fazendo commit se tudo der certo ou rollback se der erro.
+	@Transactional
+	void buscarLivroTest() {
+		UUID id = UUID.fromString("11e73b06-1250-4cbf-ac73-99122c766ed0");
+		var livro = livroRepository.findById(id).orElse(null);
+		System.out.println("Livro:");
+		System.out.println(livro.getTitulo());
+		System.out.println("Autor:");
+		System.out.println(livro.getAutor().getNome());
 	}
 
 }
