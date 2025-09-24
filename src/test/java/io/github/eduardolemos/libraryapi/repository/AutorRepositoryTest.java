@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import io.github.eduardolemos.libraryapi.model.Autor;
 import io.github.eduardolemos.libraryapi.model.GeneroLivro;
 import io.github.eduardolemos.libraryapi.model.Livro;
+import jakarta.transaction.Transactional;
 
 @SpringBootTest
 public class AutorRepositoryTest {
@@ -123,4 +124,18 @@ public class AutorRepositoryTest {
 		
 		
 	}
+	
+	@Test
+	void listarLivrosAutorTest() {
+		
+		var id = UUID.fromString("1b576a73-8e7a-4f91-b548-46326ed31a72");
+		var autor = autorRepository.findById(id).get();
+		
+		//buscar os livros do autor
+		List<Livro> livrosList =  livroRepository.findByAutor(autor);
+		autor.setLivros(livrosList);
+		
+		autor.getLivros().forEach(System.out:: println);
+	}
+
 }

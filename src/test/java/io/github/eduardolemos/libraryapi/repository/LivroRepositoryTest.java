@@ -2,6 +2,7 @@ package io.github.eduardolemos.libraryapi.repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
@@ -108,4 +109,24 @@ class LivroRepositoryTest {
 		System.out.println(livro.getAutor().getNome());
 	}
 
+	@Test
+	void listarLivrosTituloTest() {
+		List<Livro> livros = livroRepository.findByTitulo("As cronicas de ninguem com autor novo");
+		livros.forEach(System.out:: println);
+		
+	}
+	
+	@Test
+	void listarLivrosIsbnnTest() {
+		List<Livro> livros = livroRepository.findByIsbn("20123-1231");
+		livros.forEach(System.out:: println);
+		
+	}
+	
+	@Test
+	void listarLivrosTituloAndPreco() {
+		List<Livro> livros = livroRepository.findByTituloAndPreco("Aprender é bom", new BigDecimal(100.00));
+		livros.forEach(System.out::println);
+	}
+	
 }
