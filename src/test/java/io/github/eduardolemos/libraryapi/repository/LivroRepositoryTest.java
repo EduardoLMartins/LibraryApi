@@ -39,28 +39,27 @@ class LivroRepositoryTest {
 		
 		livroRepository.save(livro);
 		
-		
-		
 	}
 	
 	@Test
 	void salvarCascadeTest() {
 		
 		Livro livro = new Livro();
-		livro.setTitulo("As cronicas de ninguem com autor novo");
-		livro.setPreco(BigDecimal.valueOf(100));
-		livro.setIsbn("123");
-		livro.setDataPublicacao(LocalDate.of(2009, 03, 10));
-		livro.setGenero(GeneroLivro.AVENTURA);
+		livro.setTitulo("Modesto");
+		livro.setPreco(BigDecimal.valueOf(23));
+		livro.setIsbn("55412");
+		livro.setDataPublicacao(LocalDate.of(1980, 03, 10));
+		livro.setGenero(GeneroLivro.FANTASIA);
+		
+		
 		
 		
 		Autor autor = new Autor();
-		autor.setNome("Joao");
+		autor.setNome("Henrique");
 		autor.setNacionalidade("Brasileira");
 		autor.setDataNascimento(LocalDate.of(2003, 07, 26));
-		
 		livro.setAutor(autor);
-		
+		autorRepository.save(autor);
 		livroRepository.save(livro);
 		
 	}
@@ -164,5 +163,15 @@ class LivroRepositoryTest {
 		
 	}
 	
+	@Test
+	void deleteTestPorGenero() {
+		livroRepository.deleteByGenero(GeneroLivro.ACAO);
+	}
+	
+	
+	@Test
+	void updateDataTest() {
+		livroRepository.updateDataPublicacao(LocalDate.of(2010, 10, 12));
+	}
 	
 }

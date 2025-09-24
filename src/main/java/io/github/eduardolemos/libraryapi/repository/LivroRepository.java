@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import io.github.eduardolemos.libraryapi.model.Autor;
 import io.github.eduardolemos.libraryapi.model.GeneroLivro;
 import io.github.eduardolemos.libraryapi.model.Livro;
+import jakarta.transaction.Transactional;
 
 public interface LivroRepository  extends JpaRepository<Livro, UUID>{
 
@@ -68,4 +70,18 @@ public interface LivroRepository  extends JpaRepository<Livro, UUID>{
 	List<Livro> findByGeneroPositionalParameters(GeneroLivro generoLivro, 
 			String nomePropriedade);
 
+	
+	
+	// para fazer delete
+	
+	@Transactional // serve para abrir uma transação dentro do banco
+	@Modifying //modificar registro no banco precisa dessa anotaçao
+	@Query(" delete from Livro where genero = ?1")
+	void deleteByGenero(GeneroLivro genero);
+	
+	@Transactional
+	@Modifying
+	@Query( "update Livro set dataPublicacao = ?1 ")
+	void updateDataPublicacao(LocalDate novaData);
+	
 }

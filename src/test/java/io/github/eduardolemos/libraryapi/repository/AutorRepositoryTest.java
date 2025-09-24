@@ -93,27 +93,27 @@ public class AutorRepositoryTest {
 		
 
 		Autor autor = new Autor();
-		autor.setNome("Lucas");
-		autor.setNacionalidade("Brasileira");
-		autor.setDataNascimento(LocalDate.of(1920, 10, 29));
+		autor.setNome("Gabi");
+		autor.setNacionalidade("Inglesa");
+		autor.setDataNascimento(LocalDate.of(2002, 8, 14));
 		
 
 		Livro livro = new Livro();
-		livro.setTitulo("Aprender é bom");
-		livro.setPreco(BigDecimal.valueOf(100));
+		livro.setTitulo("Como comprar um gato");
+		livro.setPreco(BigDecimal.valueOf(67));
 		livro.setIsbn("20123-1231");
-		livro.setDataPublicacao(LocalDate.of(1999, 9, 01));
-		livro.setGenero(GeneroLivro.AVENTURA);
+		livro.setDataPublicacao(LocalDate.of(2023, 8, 14));
+		livro.setGenero(GeneroLivro.ROMANCE);
 		livro.setAutor(autor);
 		autor.setLivros(new ArrayList<Livro>());
 		autor.getLivros().add(livro);
 		
 		Livro livro2 = new Livro();
-		livro2.setTitulo("Aprender é extraordinario");
+		livro2.setTitulo("Como comprar um cachorro");
 		livro2.setPreco(BigDecimal.valueOf(120));
 		livro2.setIsbn("20123-1231");
 		livro2.setAutor(autor);
-		livro2.setDataPublicacao(LocalDate.of(2003, 9, 01));
+		livro2.setDataPublicacao(LocalDate.of(2023, 9, 01));
 		livro2.setGenero(GeneroLivro.AVENTURA);
 		
 		autor.getLivros().add(livro2);
