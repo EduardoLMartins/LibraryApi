@@ -129,4 +129,17 @@ class LivroRepositoryTest {
 		livros.forEach(System.out::println);
 	}
 	
+	@Test
+	void listarLivrosBetweendataPublicacao() {
+		
+		List<Livro> livros = livroRepository.findByDataPublicacaoBetween(LocalDate.of(2000, 1, 01), LocalDate.of(2010, 1, 01));
+		livros.forEach(System.out::println);
+	}
+	
+	@Test
+	void listarLivrosPorPalavra() {
+		List<Livro> livros = livroRepository.findByTituloLike("Aprender%");
+		livros.forEach(System.out::println);
+	}
+	
 }

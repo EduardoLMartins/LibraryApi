@@ -1,6 +1,7 @@
 package io.github.eduardolemos.libraryapi.repository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,4 +24,10 @@ public interface LivroRepository  extends JpaRepository<Livro, UUID>{
 	
 	// select * from livro where titudo = titulo or isbn = isbn
 	List<Livro> findByTituloAndPreco(String titulo, BigDecimal bigDecimal);
+	
+	// select * from livro where data_publicacao between ? and ?
+	List<Livro> findByDataPublicacaoBetween(LocalDate inicio, LocalDate fim);
+	
+	// select * from livro where titulo like ?
+	List<Livro> findByTituloLike(String titulo);
 }
