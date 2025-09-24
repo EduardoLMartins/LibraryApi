@@ -142,4 +142,27 @@ class LivroRepositoryTest {
 		livros.forEach(System.out::println);
 	}
 	
+	@Test
+	void listarTitulosNaoRepetidosDosLivros() {
+		var titulos = livroRepository.listarNomesDiferentesLivros();
+		titulos.forEach(System.out::println);
+		
+	}
+	
+	
+	@Test
+	void listarPorGeneroQueryNamedParamTest() {
+		var titulos = livroRepository.findByGenero(GeneroLivro.AVENTURA, "data_publicacao");
+		titulos.forEach(System.out::println);
+		
+	}
+	
+	@Test
+	void listarPorGeneroQueryPositionalParamTest() {
+		var titulos = livroRepository.findByGenero(GeneroLivro.AVENTURA, "data_publicacao");
+		titulos.forEach(System.out::println);
+		
+	}
+	
+	
 }

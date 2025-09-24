@@ -137,5 +137,25 @@ public class AutorRepositoryTest {
 		
 		autor.getLivros().forEach(System.out:: println);
 	}
+	
+	@Test
+	void listarLivrosOrderTitulo() {
+		
+		List<Livro> livros = livroRepository.listarTodos();
+		livros.forEach(System.out::println);
+		
+	}
+	
+	@Test
+	void listarAutoresDosLivros() {
+		List<Autor> autores = livroRepository.listarAutoresDosLivros();
+		autores.forEach(System.out::println);
+	}
+	
+	@Test
+	void listarGenerosDeAutoresBrasileiros() {
+		var autores = livroRepository.listarGenerosAutoresBrasileiros();
+		autores.forEach(System.out::println);
+	}
 
 }

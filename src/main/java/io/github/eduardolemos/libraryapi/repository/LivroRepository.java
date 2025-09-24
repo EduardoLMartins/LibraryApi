@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import io.github.eduardolemos.libraryapi.model.Autor;
+import io.github.eduardolemos.libraryapi.model.GeneroLivro;
 import io.github.eduardolemos.libraryapi.model.Livro;
 
 public interface LivroRepository  extends JpaRepository<Livro, UUID>{
@@ -30,4 +33,39 @@ public interface LivroRepository  extends JpaRepository<Livro, UUID>{
 	
 	// select * from livro where titulo like ?
 	List<Livro> findByTituloLike(String titulo);
+	
+	// JPQL -> referencia as entidades e as propriedades
+	// select l* from livro as l order by l.titulo
+	@Query(" select l from Livro as l order by l.titulo")
+	List<Livro> listarTodos();
+	
+	
+	@Query(" select a from Livro l join l.autor a")
+	List<Autor> listarAutoresDosLivros();
+	
+	@Query(" select distinct l.titulo from Livro l")
+	List<String> listarNomesDiferentesLivros();
+	
+	
+	// String nova que chegou no java 17 para string longas
+	@Query("""
+			select l.genero from Livro l
+			join l.autor a
+			where a.nacionalidade = 'Brasileira'
+			order by l.genero
+			
+			""")
+	List<String> listarGenerosAutoresBrasileiros();
+	
+	// Named parameters -> parametros nomeados
+	@Query("select l from Livro l where l.genero = :genero order by :paramOrdenacao")
+	List<Livro> findByGenero(@Param("genero") GeneroLivro generoLivro, 
+			@Param("paramOrdenacao") String nomePropriedade);
+	
+	
+	// Positional parameters
+	@Query("select l from Livro l where l.genero = ?1 order by ?2")
+	List<Livro> findByGeneroPositionalParameters(GeneroLivro generoLivro, 
+			String nomePropriedade);
+
 }
