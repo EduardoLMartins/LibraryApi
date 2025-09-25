@@ -93,13 +93,13 @@ public class AutorRepositoryTest {
 		
 
 		Autor autor = new Autor();
-		autor.setNome("Gabi");
+		autor.setNome("Fake");
 		autor.setNacionalidade("Inglesa");
 		autor.setDataNascimento(LocalDate.of(2002, 8, 14));
 		
 
 		Livro livro = new Livro();
-		livro.setTitulo("Como comprar um gato");
+		livro.setTitulo("Como comprar um fake");
 		livro.setPreco(BigDecimal.valueOf(67));
 		livro.setIsbn("20123-1231");
 		livro.setDataPublicacao(LocalDate.of(2023, 8, 14));
