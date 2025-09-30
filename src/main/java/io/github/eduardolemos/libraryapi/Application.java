@@ -4,11 +4,13 @@ import java.time.LocalDate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import io.github.eduardolemos.libraryapi.model.Autor;
 import io.github.eduardolemos.libraryapi.repository.AutorRepository;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class Application {
 
 	public static void main(String[] args) {
