@@ -16,18 +16,18 @@ public class Application {
 		
 		AutorRepository autorRepository = context.getBean(AutorRepository.class);
 	
-		exemploSalvarRegistro(autorRepository);
+//		exemploSalvarRegistro(autorRepository);
 		
 	}
 
-	public static void exemploSalvarRegistro(AutorRepository autorRepository) {
-		Autor autor = new Autor();
-		autor.setNome("Eduardo");
-		autor.setNacionalidade("Braileira");
-		autor.setDataNascimento(LocalDate.of(2001, 02, 07));
-		
-		var autorSalvo = autorRepository.save(autor);
-		
-		System.out.println("Autor Salvo:" + autorSalvo);
-	}
+//	public static void exemploSalvarRegistro(AutorRepository autorRepository) {
+//		Autor autor = new Autor();
+//		autor.setNome("Eduardo");
+//		autor.setNacionalidade("Braileira");
+//		autor.setDataNascimento(LocalDate.of(2001, 02, 07));
+//		
+//		var autorSalvo = autorRepository.save(autor);
+//		
+//		System.out.println("Autor Salvo:" + autorSalvo);
+//	}
 }
