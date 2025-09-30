@@ -1,10 +1,12 @@
 package io.github.eduardolemos.libraryapi.dto;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import io.github.eduardolemos.libraryapi.model.Autor;
 
 public record AutorDTO(
+		UUID id,
 		String nome, 
 		LocalDate dataNascimento, 
 		String nacionalidade) {
