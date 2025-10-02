@@ -73,6 +73,7 @@ public class AutorController {
 		autorService.deletar(autorOptional.get());
 		return ResponseEntity.noContent().build();
 		
-		
 	}
+	
+	
 }
