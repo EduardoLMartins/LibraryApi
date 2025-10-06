@@ -24,17 +24,15 @@ import io.github.eduardolemos.libraryapi.exceptions.OperacaoNaoPermitidaExceptio
 import io.github.eduardolemos.libraryapi.exceptions.RegistroDuplicadoException;
 import io.github.eduardolemos.libraryapi.model.Autor;
 import io.github.eduardolemos.libraryapi.service.AutorService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/autores")
+@RequiredArgsConstructor
 // http://localhost:8080/autores
 public class AutorController {
 	 
 	private final AutorService autorService;
-	
-	public AutorController(AutorService autorService) {
-		this.autorService = autorService;
-	}
 	
 	@PostMapping
 	public ResponseEntity<Object> salvar(@RequestBody AutorDTO autor) {
