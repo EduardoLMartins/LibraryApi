@@ -17,6 +17,8 @@ import jakarta.transaction.Transactional;
 
 public interface LivroRepository  extends JpaRepository<Livro, UUID>{
 
+	
+	
 	//Query method
 	//select * from livro where id_autor = id
 	List<Livro> findByAutor(Autor autor);
@@ -84,4 +86,6 @@ public interface LivroRepository  extends JpaRepository<Livro, UUID>{
 	@Query( "update Livro set dataPublicacao = ?1 ")
 	void updateDataPublicacao(LocalDate novaData);
 	
+	boolean existsByAutor(Autor autor);
+
 }
